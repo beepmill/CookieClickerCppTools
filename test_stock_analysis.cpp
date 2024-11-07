@@ -1,5 +1,5 @@
 #include "stock_analysis.h"
-#include "catch2/catch.hpp"
+#include <catch2/catch_test_macros.hpp>
 
 #include <iostream>
 #include <sstream>
@@ -21,7 +21,7 @@ TEST_CASE("generateStockHistogram works", "[stock]") {
     data[48] = 3;
     data[49] = 1;
     data[50] = 2;
-    
+
     auto h = generateStockHistogram(stock, rng, 10);
     CHECK(h.stock_id == 0);
     CHECK(h.bank_level == 1);
