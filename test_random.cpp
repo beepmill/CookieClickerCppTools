@@ -1,4 +1,6 @@
-#include "catch2/catch.hpp"
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/catch_approx.hpp>
+#include <catch2/matchers/catch_matchers_all.hpp>
 
 #include "random.h"
 
@@ -27,11 +29,11 @@ TEST_CASE("The RC4 random engine works properly", "[random]") {
 TEST_CASE("The uniform_random function works properly", "[random]") {
     rc4_engine e("hello.");
     double value = generate_canonical(e);
-    REQUIRE(value == Approx(0.9282578795792454));
+    REQUIRE(value == Catch::Approx(0.9282578795792454));
     CHECK(value == 0.92825787957924543736254463510704226791858673095703125);
 
     value = generate_canonical(e);
-    REQUIRE(value == Approx(0.3752569768646784));
+    REQUIRE(value == Catch::Approx(0.3752569768646784));
     CHECK(value == 0.37525697686467840430424303121981211006641387939453125);
 
     /* Reasoning:
@@ -46,10 +48,10 @@ TEST_CASE("The uniform_random function works properly", "[random]") {
 
 TEST_CASE("The convenience class prng works as intended", "[random]") {
     prng rng("test");
-    REQUIRE(rng() == Approx(0.8722025543160253));
-    REQUIRE(rng() == Approx(0.4023928518604753));
+    REQUIRE(rng() == Catch::Approx(0.8722025543160253));
+    REQUIRE(rng() == Catch::Approx(0.4023928518604753));
 
     rng = prng("");
-    REQUIRE(rng() == Approx(0.23144008215179881));
-    REQUIRE(rng() == Approx(0.27404636548159655));
+    REQUIRE(rng() == Catch::Approx(0.23144008215179881));
+    REQUIRE(rng() == Catch::Approx(0.27404636548159655));
 }
